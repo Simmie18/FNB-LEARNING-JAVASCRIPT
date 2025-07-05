@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    color: #fff;
+    text-align: center;
+    border-collapse: collapse;
+    font: normal 3em Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: 500px;
+    height: 80vh;
+    background-color: #4e494d;
+    table-layout: fixed;
+}
+
+tr {
+    height: 16.02vh;
+}
+
+td {
+    border: 1px solid #5a5559;
+    padding: 0;
+    position: relative;
+}
+
+#inputBox {
+    width: 100%;
+    height: 100%;
+    font-size: 2em;
+    text-align: right;
+    border: none;
+    background-color: #4e494d;
+    color: white;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    font-size: 1.5em;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #5a5559;
+}
+
+.operatorButton {
+    background-color: #ff9500;
+}
+
+.operatorButton:hover {
+    background-color: #ffaa33;
+}
+
+.ACButton {
+    background-color: #a5a5a5;
+    color: #000;
+}
+
+.equalsButton {
+    background-color: #ff9500;
+}

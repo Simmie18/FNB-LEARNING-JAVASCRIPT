@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    
+    <title>Weather Advice App</title>
+    
+ 
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    
+   
+    <style>
+     
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;        /* Limits content width for better readability */
+            margin: 0 auto;         /* Centers content horizontally */
+            padding: 20px;          /* Adds spacing around content */
+        }
+        
+       
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px 0;         /* Adds vertical spacing */
+            width: 100%;           /* Makes select full width */
+        }
+        
+        
+        #advice {
+            padding: 15px;
+            background-color: #f0f8ff;  /* Light blue background */
+            border-radius: 5px;         /* Rounded corners */
+            margin-top: 15px;           /* Space above the advice box */
+            font-weight: bold;          /* Makes text bold */
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Weather Advisor</h1>
+    
+   
+    <label for="weather">What's the weather like today?</label>
+    <select id="weather">
+       
+        <option value="">-- Select weather --</option>
+        
+       
+        <option value="sunny">Sunny</option>
+        <option value="windy">Windy</option>
+        <option value="rainy">Rainy</option>
+        <option value="snowy">Snowy</option>
+    </select>
+    
+    <!-- Container where advice will be displayed -->
+    <div id="advice"></div>
+    
+  
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Get reference to the weather select element
+            const weatherSelect = document.getElementById("weather");
+            
+            // Add change event listener to the select element
+            weatherSelect.addEventListener('change', function() {
+                
+                // Get the currently selected weather value
+                const weatherSelected = this.value;
+                
+                // Initialize variables for advice and emoji
+                let advice = "";
+                let emoji = "";
+                
+                // Determine advice based on selected weather
+                switch(weatherSelected) {
+                    case "sunny":
+                        advice = "Wear your sunglasses and sunscreen!";
+                        emoji = "😎";
+                        break;
+                    case "windy":
+                        advice = "Wear a jacket and secure your hat!";
+                        emoji = "🧥";
+                        break;
+                    case "rainy":
+                        advice = "Bring an umbrella and waterproof shoes!";
+                        emoji = "☔";
+                        break;
+                    case "snowy":
+                        advice = "Bundle up with warm layers and boots!";
+                        emoji = "⛄";
+                        break;
+                    default:
+                        advice = "Select a weather condition for advice";
+                }
+                
+                // Get reference to the advice display element
+                const adviceElement = document.getElementById("advice");
+                
+                // Update the advice display based on selection
+                if (weatherSelected) {
+                    // If a weather option is selected, show emoji and colored advice
+                    adviceElement.innerHTML = `<span style="font-size:24px">${emoji}</span> ${advice}`;
+                    adviceElement.style.color = "#0066cc";  // Blue text
+                } else {
+                    // If no selection (placeholder), show default message
+                    adviceElement.textContent = advice;
+                    adviceElement.style.color = "#666";     // Gray text
+                }
+            });
+        });
+    </script>
+</body>
+</html>

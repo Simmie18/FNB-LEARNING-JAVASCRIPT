@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        table {
+            color: #fff;
+            text-align: center;
+            border-collapse: collapse;
+            font: normal 3em Arial, Helvetica, sans-serif;
+            width: 100%;
+            max-width: 500px;
+            height: 80vh;
+            background-color: #4e494d;
+            table-layout: fixed;
+        }
+        
+        tr {
+            height: 16.02vh;
+        }
+        
+        td {
+            border: 1px solid #5a5559;
+            padding: 0;
+            position: relative;
+        }
+        
+        #inputBox {
+            width: 100%;
+            height: 100%;
+            font-size: 2em;
+            text-align: right;
+            border: none;
+            background-color: #4e494d;
+            color: white;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            width: 100%;
+            height: 100%;
+            font-size: 1.5em;
+            border: none;
+            background-color: transparent;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #5a5559;
+        }
+        
+        .operatorButton {
+            background-color: #ff9500;
+        }
+        
+        .operatorButton:hover {
+            background-color: #ffaa33;
+        }
+        
+        .ACButton {
+            background-color: #a5a5a5;
+            color: #000;
+        }
+        
+        .equalsButton {
+            background-color: #ff9500;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="inputBox" value="0">
+            </td>
+        </tr>
+        <tr>
+            <td><button class="digitButton" onclick="digitBtnPressed('7')">7</button></td>
+            <td><button class="digitButton" onclick="digitBtnPressed('8')">8</button></td>
+            <td><button class="digitButton" onclick="digitBtnPressed('9')">9</button></td>
+            <td><button class="operatorButton" onclick="operatorBtnPressed('*')">x</button></td>
+        </tr>
+        <tr>
+            <td><button class="digitButton" onclick="digitBtnPressed('4')">4</button></td>
+            <td><button class="digitButton" onclick="digitBtnPressed('5')">5</button></td>
+            <td><button class="digitButton" onclick="digitBtnPressed('6')">6</button></td>
+            <td><button class="operatorButton" onclick="operatorBtnPressed('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="digitButton" onclick="digitBtnPressed('1')">1</button></td>
+            <td><button class="digitButton" onclick="digitBtnPressed('2')">2</button></td>
+            <td><button class="digitButton" onclick="digitBtnPressed('3')">3</button></td>
+            <td><button class="operatorButton" onclick="operatorBtnPressed('+')">+</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button class="digitButton" onclick="digitBtnPressed('0')">0</button></td>
+            <td><button class="ACButton" onclick="clearInput()">AC</button></td>
+            <td><button class="operatorButton" onclick="operatorBtnPressed('/')">/</button></td>
+        </tr>
+        <tr>
+            <td colspan="4"><button class="equalsButton" onclick="equalsBtnPressed()">=</button></td>
+        </tr>
+    </table>
+
+    <script>
+        // Tracks if we should start a new calculation line
+        var newLine = true;
+        var value1;
+        var currentOperator;
+
+        function digitBtnPressed(button) {
+            if (newLine) {
+                document.getElementById("inputBox").value = button;
+                newLine = false;
+            } else {
+                var currentValue = document.getElementById("inputBox").value;
+                document.getElementById("inputBox").value = currentValue + button;
+            }
+        }
+
+        function clearInput() {
+            document.getElementById("inputBox").value = "0";
+            newLine = true;
+            value1 = undefined;
+            currentOperator = undefined;
+        }
+
+        function operatorBtnPressed(operator) {
+            currentOperator = operator;
+            value1 = parseFloat(document.getElementById("inputBox").value);
+            newLine = true;
+        }
+
+        function equalsBtnPressed() {
+            if (currentOperator === undefined) return;
+            
+            var value2 = parseFloat(document.getElementById("inputBox").value);
+            var finalTotal;
+            
+            switch(currentOperator) {
+                case '+': finalTotal = value1 + value2; break;
+                case '-': finalTotal = value1 - value2; break;
+                case '*': finalTotal = value1 * value2; break;
+                case '/': finalTotal = value1 / value2; break;
+                default: finalTotal = value2;
+            }
+            
+            document.getElementById("inputBox").value = finalTotal;
+            newLine = true;
+        }
+    </script>
+</body>
+</html
